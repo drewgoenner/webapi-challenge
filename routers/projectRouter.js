@@ -53,6 +53,31 @@ router.post('/', validateProject, (req, res) => {
         .catch(err => {
             res.status(500).json({ error: "Could not post new project to server"})
         })
+});
+
+router.delete('/:id', validatProjectId, (req, res) => {
+    const id = req.params.id;
+
+    Projects.remove(id)
+        .then(removed => {
+            res.send({ message: `Project ${id} has been deleted`});
+        })
+        .catch(err => {
+            res.status(500).json({ error: `Unable to remove project ${id} from the server`});
+        })
+});
+
+router.put('/:id', validatProjectId, validateProject, (req, res) => {
+    const id = req.params.id;
+    const update = req.body;
+
+    Projects.update(id, update)
+        .then(project => {
+            res.status(201).json(update);
+        })
+        .catch(err => {
+            res.status(500).json({ error: `Unable to update project #${id}`})
+        })
 })
 
 
