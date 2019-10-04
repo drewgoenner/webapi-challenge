@@ -55,6 +55,7 @@ router.post('/', validateProject, (req, res) => {
         })
 });
 
+//delete a project
 router.delete('/:id', validatProjectId, (req, res) => {
     const id = req.params.id;
 
@@ -67,6 +68,7 @@ router.delete('/:id', validatProjectId, (req, res) => {
         })
 });
 
+//update a project
 router.put('/:id', validatProjectId, validateProject, (req, res) => {
     const id = req.params.id;
     const update = req.body;
