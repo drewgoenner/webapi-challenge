@@ -2,7 +2,7 @@ const express = require('express');
 
 const server = express();
 const projectRouter = require('./routers/projectRouter');
-// const actionRouter = require('./routers/projectRouter');
+
 
 //custom logger Middleware
 function logger(req, res, next) {
@@ -12,8 +12,8 @@ function logger(req, res, next) {
 
 server.use(logger);
 server.use(express.json());
-server.use('/api/projects', projectRouter)
-// server.use('/api/projects/:id/actions', actionRouter)
+server.use('/api/', projectRouter);
+
 
 server.get('/', (req, res) => {
     res.send(`<h2>WebApi Sprint!</h2`)
